@@ -1,5 +1,6 @@
-# JonpoorHub v0.5
+# JonpoorHub v0.5!
 
+```loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()```
 
 ## Update 0.5 Alpha!
 - Codes Tab Added
