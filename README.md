@@ -2,7 +2,8 @@
 
 
 ## Update 0.5 Alpha!
-- Codes Tab Added• Easy Code Access
+- Codes Tab Added
+- Easy Code Access
 - Fixed Expired Discord Link
 
 
