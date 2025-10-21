@@ -6,6 +6,7 @@
 - Organised Tabs To Different Sections
 - Added Redeem All Codes
 - Added Game Tab with Gamespeed
+- Added Exploits Tab | E.g. Tons of Coins and Gems
 
 ## Update 0.5 Alpha!
 - Codes Tab Added
