@@ -1,6 +1,11 @@
 # JonpoorHub v0.5!
 
-```loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()```
+````loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()````
+
+## Update 0.6 Alpha!
+- Organised Tabs To Different Sections
+- Added Redeem All Codes
+- Added Game Tab with Gamespeed
 
 ## Update 0.5 Alpha!
 - Codes Tab Added
@@ -14,11 +19,9 @@
 - Fixed Some Bugs with Script Buttons.
 
 
-
 ## Update 0.3 Alpha!
 - Minor Changes
 - Updated Script
-
 
 
 ## Update 0.2 Alpha!
@@ -26,7 +29,6 @@
 - Added Discord Server
 - A Barbershop haircut that cost a quarter
 - Fixed UI not functioning properly
-
 
 
 ## Update 0.1 Alpha!
