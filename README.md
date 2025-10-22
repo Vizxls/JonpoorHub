@@ -1,6 +1,20 @@
-# JonpoorHub v0.5!
+# JonpoorHub v0.7.1!
 
 ````loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()````
+
+## Update 0.7.1 Alpha!
+- Fixed UI Loading
+- Fixed Themes
+- Fixed Most Buttons Weirdly Not Working
+
+  
+## Update 0.7 Alpha!
+- Organised Most Of The Features
+-  New Upgrade Unit Button In Shop Tab
+-  Buy Eggs Now Called Shop
+-  New Themes | More Themes in Config Tab
+-  Added More In Game Tab\n• Added Save Files
+
 
 ## Update 0.6 Alpha!
 - Organised Tabs To Different Sections
