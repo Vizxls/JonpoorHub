@@ -1,9 +1,9 @@
-# JonpoorHub v0.7.2!
+# Mythical TD v0.7.2!
 
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()
 ```
-# JonpoorHub v0.6 Some Executor Supports
+# Mythical TD v0.6 Some Executor Supports
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/mainexecsupport.lua"))()
 ```
