@@ -1,6 +1,19 @@
-# JonpoorHub v0.7.1!
+# JonpoorHub v0.7.2!
 
-````loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()````
+```lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()
+```
+# JonpoorHub v0.6 Some Executor Supports
+```lua
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/mainexecsupport.lua"))()
+```
+
+
+
+## Update 0.7.2 Alpha!
+- Fixed Upgrade Button Not Upgrading
+- Fixed Gold Mutation not showing on list
+- Fixed Saved Tab
 
 ## Update 0.7.1 Alpha!
 - Fixed UI Loading
@@ -13,7 +26,8 @@
 -  New Upgrade Unit Button In Shop Tab
 -  Buy Eggs Now Called Shop
 -  New Themes | More Themes in Config Tab
--  Added More In Game Tab\n• Added Save Files
+-  Added More In Game Tab
+-  Added Save Files
 
 
 ## Update 0.6 Alpha!
