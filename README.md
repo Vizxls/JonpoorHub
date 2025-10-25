@@ -1,6 +1,4 @@
-<h1 align="center">
-  <a href="https://yonpoorhub.base44.app">StefanHub!</a>
-</h1>
+<h1 align="center">StefanHub!</h1>
 
 
 ```lua
