@@ -8,7 +8,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/StefanHub/refs
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/StefanHub/refs/heads/main/MythicalTD/mainexecsupport.lua"))()
 ```
 
-# Update 0.7.3 Alpha!
+## Update 0.7.3 Alpha!
 - Fixed Up More Things
 - More Themes
 - Changed Auto Save System
