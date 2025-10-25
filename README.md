@@ -1,4 +1,7 @@
-# StefanHub!
+<p align="center" style="font-size:50px; font-weight:bold;">
+  StefanHub!
+</p>
+
 ```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/StefanHub/refs/heads/main/Loader.lua"))()
 ```
