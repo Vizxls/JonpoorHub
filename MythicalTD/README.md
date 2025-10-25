@@ -1,11 +1,11 @@
 # Mythical TD v0.7.2!
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/main.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/StefanHub/refs/heads/main/MythicalTD/main.lua"))()
 ```
 # Mythical TD v0.6 Some Executor Supports
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/JonpoorHub/refs/heads/main/MythicalTD/mainexecsupport.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Vizxls/StefanHub/refs/heads/main/MythicalTD/mainexecsupport.lua"))()
 ```
 
 
