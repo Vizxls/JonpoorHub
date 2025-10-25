@@ -42,7 +42,7 @@ local Loader = {}
 
 -- Repository base URLs (authors -> raw GitHub base)
 Loader.Repositories = {
-    tgh = "https://raw.githubusercontent.com/Vizxls/JonpoorHub/main/",
+    tgh = "https://raw.githubusercontent.com/Vizxls/StefanHub/main/",
 }
 
 -- Files mapping (FriendlyName -> metadata)
