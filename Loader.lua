@@ -1,6 +1,110 @@
--- Cleaned & hardened Loader
--- Preserves original functionality: loads game-specific scripts by creator id
--- Supports multiple repositories and safe HTTP fetching
+-- Splash Screen
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "SplashScreen"
+ScreenGui.Parent = PlayerGui
+
+-- Theme Colors
+local Theme = {
+    Accent = Color3.fromHex("#30FF6A"),
+    Dialog = Color3.fromHex("#1a1a1a"),
+    Outline = Color3.fromHex("#FFFFFF"),
+    Text = Color3.fromHex("#FFFFFF"),
+    Background = Color3.fromHex("#101010")
+}
+
+-- Background Frame
+local SplashFrame = Instance.new("Frame")
+SplashFrame.Size = UDim2.new(0, 500, 0, 250)
+SplashFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+SplashFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+SplashFrame.BackgroundColor3 = Theme.Background
+SplashFrame.BorderColor3 = Theme.Outline
+SplashFrame.BorderSizePixel = 2
+SplashFrame.Parent = ScreenGui
+SplashFrame.ClipsDescendants = true
+SplashFrame.Name = "SplashFrame"
+
+-- Round corners
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 20)
+UICorner.Parent = SplashFrame
+
+-- Icon
+local Icon = Instance.new("ImageLabel")
+Icon.Size = UDim2.new(0, 100, 0, 100)
+Icon.Position = UDim2.new(0.5, -50, 0, 20)
+Icon.Image = "rbxassetid://99908994219665"
+Icon.BackgroundTransparency = 1
+Icon.Parent = SplashFrame
+
+-- Title
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(0, 400, 0, 50)
+Title.Position = UDim2.new(0.5, -200, 0, 140)
+Title.Text = "Stefan Hub"
+Title.Font = Enum.Font.Roboto
+Title.TextSize = 32
+Title.TextColor3 = Theme.Text
+Title.BackgroundTransparency = 1
+Title.TextScaled = true
+Title.TextStrokeTransparency = 0.8
+
+-- Gradient for title text
+local titleGradient = Instance.new("UIGradient")
+titleGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(180,180,180))
+}
+titleGradient.Rotation = 90
+titleGradient.Parent = Title
+
+Title.Parent = SplashFrame
+
+-- Loading Bar Background
+local LoadingBG = Instance.new("Frame")
+LoadingBG.Size = UDim2.new(0, 400, 0, 20)
+LoadingBG.Position = UDim2.new(0.5, -200, 0, 200)
+LoadingBG.BackgroundColor3 = Theme.Dialog -- grayish background
+LoadingBG.BorderColor3 = Theme.Outline
+LoadingBG.BorderSizePixel = 2
+LoadingBG.Parent = SplashFrame
+
+-- Round corners for loading bar background
+local UICornerBG = Instance.new("UICorner")
+UICornerBG.CornerRadius = UDim.new(0, 10)
+UICornerBG.Parent = LoadingBG
+
+-- Loading Bar (fill)
+local LoadingBar = Instance.new("Frame")
+LoadingBar.Size = UDim2.new(0, 0, 1, 0)
+LoadingBar.Position = UDim2.new(0, 0, 0, 0)
+LoadingBar.BackgroundColor3 = Theme.Accent -- blue accent
+LoadingBar.BorderSizePixel = 0
+LoadingBar.Parent = LoadingBG
+
+-- Gradient for LoadingBar
+local loadingGradient = Instance.new("UIGradient")
+loadingGradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Theme.Accent),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0,100,255)) -- darker blue
+}
+loadingGradient.Rotation = 90
+loadingGradient.Parent = LoadingBar
+
+-- Smoothly fill loading bar
+coroutine.wrap(function()
+    for i = 0, 1, 0.005 do
+        LoadingBar.Size = UDim2.new(i, 0, 1, 0)
+        task.wait(0.01)
+    end
+    task.wait(0.5) -- wait before starting loader script
+
+    -- Destroy splash screen after loading
+    ScreenGui:Destroy()
 
 -- cloneref fallback (preserve behavior if cloneref/clonereference is available)
 local cloneref = cloneref or clonereference or function(instance)
@@ -156,19 +260,16 @@ function Loader:LoadByCreatorId(CreatorId)
 
     -- No matching CreatorId found — print ASCII art + unsupported message
     warn([[
-⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⡴⠋⠉⡊⢁⠀⠀⢬⠀⠉⠋⠈⠥⠤⢍⡛⠒⠶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠋⠉⡊⢁⠀⠀⢬⠀⠉⠋⠈⠥⠤⢍⡛⠒⠶⣄⡀⠀⠀⠀
-⠀⠀⠀⠀⣾⠥⠀⠀⠊⢭⣾⣿⣷⡤⠀⣠⡀⡅⢠⣶⣮⣄⠉⠢⠙⡆⠀⠀⠀⠀⠀⠀⣾⠥⠀⠀⠊⢭⣾⣿⣷⡤⠀⣠⡀⡅⢠⣶⣮⣄⠉⠢⠙⡆⠀⠀
-⠀⠀⣠⡾⣁⡨⠴⠢⡤⣿⣿⣿⣿⣿⠸⡷⠙⣟⠻⣯⣿⣟⣃⣠⡁⢷⣄⠀⠀⠀⣠⡾⣁⡨⠴⠢⡤⣿⣿⣿⣿⣿⠸⡷⠙⣟⠻⣯⣿⣟⣃⣠⡁⢷⣄⠀
-⠀⡼⡙⣜⡕⠻⣷⣦⡀⢙⠝⠛⡫⢵⠒⣀⡀⠳⡲⢄⣀⢰⣫⣶⡇⡂⠙⡇⠀⡼⡙⣜⡕⠻⣷⣦⡀⢙⠝⠛⡫⢵⠒⣀⡀⠳⡲⢄⣀⢰⣫⣶⡇⡂⠙⡇
-⢸⡅⡇⠈⠀⠀⠹⣿⣿⣷⣷⣾⣄⣀⣬⣩⣷⠶⠧⣶⣾⣿⣿⣿⡷⠁⣇⡇⢸⡅⡇⠈⠀⠀⠹⣿⣿⣷⣷⣾⣄⣀⣬⣩⣷⠶⠧⣶⣾⣿⣿⣿⡷⠁⣇⡇
-⠀⠳⣅⢀⢢⠡⠀⡜⢿⣿⣿⡏⠑⡴⠙⣤⠊⠑⡴⠁⢻⣿⣿⣿⠇⢀⡞⠀⠀⠳⣅⢀⢢⠡⠀⡜⢿⣿⣿⡏⠑⡴⠙⣤⠊⠑⡴⠁⢻⣿⣿⣿⠇⢀⡞⠀
-⠀⠀⠘⢯⠀⡆⠀⠐⡨⡻⣿⣧⣤⣇⣀⣧⣀⣀⣷⣠⣼⣿⣿⣿⠀⢿⠀⠀⠀⠀⠘⢯⠀⡆⠀⠐⡨⡻⣿⣧⣤⣇⣀⣧⣀⣀⣷⣠⣼⣿⣿⣿⠀⢿⠀⠀
-⠀⠀⠀⠈⢧⡐⡄⠀⠐⢌⠪⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⢸⠀⠀⠀⠀⠀⠈⢧⡐⡄⠀⠐⢌⠪⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⢸⠀⠀
-⠀⠀⠀⠀⠀⠙⢾⣆⠠⠀⡁⠘⢌⠻⣿⣿⠻⠹⠁⢃⢹⣿⣿⣿⡇⡘⡇⠀⠀⠀⠀⠀⠀⠙⢾⣆⠠⠀⡁⠘⢌⠻⣿⣿⠻⠹⠁⢃⢹⣿⣿⣿⡇⡘⡇⠀
-⠀⠀⠀⠀⠀⠀⠀⠈⠛⠷⢴⣄⠀⢭⡊⠛⠿⠿⠵⠯⡭⠽⣛⠟⢡⠃⡇⠀⠀⠀⠀⠀⠀⠀⠀⠈⠛⠷⢴⣄⠀⢭⡊⠛⠿⠿⠵⠯⡭⠽⣛⠟⢡⠃⡇⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠲⠬⣥⣀⡀⠀⢀⠀⠀⣠⡲⢄⡼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠲⠬⣥⣀⡀⠀⢀⠀⠀⣠⡲⢄⡼⠃⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠓⠒⠒⠒⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠙⠓⠒⠒⠒⠋⠉⠀⠀⠀
+-----------------------------------------------------------------------------------------
+ ____ _____ _____ _____ _    _   _   _   _ _   _ ____             
+/ ___|_   _| ____|  ___/ \  | \ | | | | | | | | | __ )            
+\___ \ | | |  _| | |_ / _ \ |  \| | | |_| | | | |  _ \            
+ ___) || | | |___|  _/ ___ \| |\  | |  _  | |_| | |_) |           
+|____/ |_| |_____|_|/_/_ _\_\_|_\_| |_|_|_|\___/|____/_____ ____  
+| | | | \ | / ___|| | | |  _ \|  _ \ / _ \|  _ \_   _| ____|  _ \ 
+| | | |  \| \___ \| | | | |_) | |_) | | | | |_) || | |  _| | | | |
+| |_| | |\  |___) | |_| |  __/|  __/| |_| |  _ < | | | |___| |_| |
+ \___/|_| \_|____/ \___/|_|   |_|    \___/|_| \_\|_| |_____|____/ 
 
     UNSUPPORTED GAME - AUSTISM DETECTED
     ]])
@@ -184,3 +285,4 @@ else
 end
 
 return Loader
+end)()
